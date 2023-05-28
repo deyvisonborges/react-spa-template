@@ -1,0 +1,9 @@
+  // "*.{js,ts,tsx}": [
+  //   "npm run code:check"
+  // ],
+
+  Configure lintstaged to map
+  .storybook
+  tests
+
+  E outras pastas que ficam fora do SRC
