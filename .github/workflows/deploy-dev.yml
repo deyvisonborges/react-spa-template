@@ -24,21 +24,21 @@ jobs:
 
       - name: AWS credentials
         if: github.ref == 'refs/heads/develop'
-        uses: noverde/github-actions/aws-configure@main
+        uses: deyvisonborges/github-actions/aws-configure@main
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
 
       - name: AWS credentials
         if: github.ref == 'refs/heads/staging'
-        uses: noverde/github-actions/aws-configure@main
+        uses: deyvisonborges/github-actions/aws-configure@main
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_STG }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_STG }}
 
       - name: AWS credentials
         if: github.ref == 'refs/heads/main'
-        uses: noverde/github-actions/aws-configure@main
+        uses: deyvisonborges/github-actions/aws-configure@main
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PRD }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PRD }}
