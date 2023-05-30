@@ -1,4 +1,6 @@
-type Keys = '@access_token' | '@refresh_token'
-type LocalStorageKeys = Record<Keys, string>
+export const localStorageKeys = {
+  ACCESS_TOKEN: '@app/access-token',
+  REFRESH_TOKEN: '@app/refresh-token'
+}
 
-export const localStorageKeys: LocalStorageKeys = {} as LocalStorageKeys
+export type LocalStorageKeys = keyof typeof localStorageKeys
