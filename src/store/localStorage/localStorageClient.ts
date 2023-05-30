@@ -1,8 +1,6 @@
-import { LocalStorageKeys } from './keys'
-
 const global: Record<string, string> = {}
 
-const getItem = (key: string | LocalStorageKeys) => {
+const getItem = (key: string) => {
   try {
     if (window.localStorage) {
       return localStorage?.getItem(key)
@@ -13,7 +11,7 @@ const getItem = (key: string | LocalStorageKeys) => {
   }
 }
 
-const setItem = (key: string | LocalStorageKeys, value: string) => {
+const setItem = (key: string, value: string) => {
   try {
     if (window.localStorage) {
       localStorage.setItem(key, value)
@@ -25,7 +23,7 @@ const setItem = (key: string | LocalStorageKeys, value: string) => {
   }
 }
 
-const removeItem = (key: string | LocalStorageKeys) => {
+const removeItem = (key: string) => {
   try {
     if (window.localStorage) {
       localStorage.removeItem(key)
