@@ -1,4 +1,6 @@
-export function IconViteLogo() {
+import { IconProps } from './type'
+
+export function IconViteLogo({ height = '32', width = '31.88' }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,8 +8,8 @@ export function IconViteLogo() {
       aria-hidden="true"
       role="img"
       className="iconify iconify--logos"
-      width="31.88"
-      height="32"
+      width={width}
+      height={height}
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 256 257"
     >
