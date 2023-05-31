@@ -1,31 +1,37 @@
-import { LocalStorageKeys } from './keys'
+import { localStorageKeys } from './keys'
 
-function setWithExpiry(
-  key: string | LocalStorageKeys,
-  value: string,
-  expirationTime: number
-) {
-  const now = new Date()
-
-  const item = {
-    value,
-    expiry: now.getTime() + expirationTime
-  }
-
-  localStorage.setItem(key, JSON.stringify(item))
+type StorageKeys = keyof typeof localStorageKeys
+type ItemType = {
+  value: string
+  expiry?: number
 }
 
-function getWithExpiry(key: string | LocalStorageKeys) {
-  const itemStr = localStorage.getItem(key)
-  if (!itemStr) return null
+export const ExpiredStorage = {
+  setItemWithExpiry(key: StorageKeys, value: string, ttl: number) {
+    const now = new Date()
+    const item: ItemType = {
+      value,
+      ...(ttl !== 0 && {
+        expiry: now.getTime() + ttl
+      })
+    }
 
-  const item = JSON.parse(itemStr)
-  const now = new Date()
-  if (now.getTime() > item.expiry) {
-    localStorage.removeItem(key)
-    return null
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  getItemWithExpiry(key: StorageKeys) {
+    const item = JSON.parse(localStorage.getItem(key) as string) as ItemType
+    const now = new Date()
+
+    if (!item) return null
+
+    if (item.expiry) {
+      if (now.getTime() > item.expiry) {
+        localStorage.removeItem(key)
+        return null
+      }
+    }
+
+    return item.value
   }
-  return item.value
 }
-
-export const expiredStorage = { setWithExpiry, getWithExpiry }
